@@ -7,7 +7,8 @@ import Table from './Table.js';
 import { sortData } from "./util.js";
 
 function App() {
-
+  
+  document.title = 'Covid Tracker';
   const [countries,setCountries]  = useState([]);
   const [country, setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
