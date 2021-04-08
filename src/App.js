@@ -4,11 +4,15 @@ import './App.css';
 import InfoBox from './InfoBox.js';
 import Map from './Map.js';
 import Table from './Table.js';
-import { sortData } from "./util.js";
+import { sortData } from './util.js';
+import LineGraph from './LineGraph';
+
 
 function App() {
   
   document.title = 'Covid Tracker';
+
+  const [casesType, setCasesType] = useState("cases");
   const [countries,setCountries]  = useState([]);
   const [country, setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
@@ -82,7 +86,8 @@ function App() {
         <CardContent>
           <h3>Live Cases by Country</h3>
           <Table countries={tableData} />
-          <h3>Worldwide new cases</h3>
+          <h3>Worldwide new {casesType}</h3>
+          <LineGraph casesType={casesType} />
         </CardContent>
       </Card>
     </div>
