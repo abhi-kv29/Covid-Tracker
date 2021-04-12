@@ -9,6 +9,7 @@ body {
 .app {
   display: flex;
   justify-content: space-evenly;
+  background-color: #f5f6fa;
   padding: 20px;
 }
 
@@ -17,6 +18,10 @@ body {
   align-items: center;
   margin-bottom: 20px;
   justify-content: space-between;
+}
+
+.app-dropdown {
+  background-color: white;
 }
 
 .app-left {
