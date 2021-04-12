@@ -83,12 +83,19 @@ function App() {
       </div>
 
       <div className="app-stats">
-        <InfoBox title="Coronavirus cases" cases={prettyPrintStat(countryInfo.todayCases)} total={prettyPrintStat(countryInfo.cases)} />
-        <InfoBox title="Recoveries" cases={prettyPrintStat(countryInfo.todayRecovered)} total ={prettyPrintStat(countryInfo.recovered)} />
-        <InfoBox title="Deaths" cases={prettyPrintStat(countryInfo.todayDeaths)} total={prettyPrintStat(countryInfo.deaths)} />
+        <InfoBox
+        onClick={e => setCasesType("cases")}
+        title="Coronavirus cases" cases={prettyPrintStat(countryInfo.todayCases)} total={prettyPrintStat(countryInfo.cases)} />
+        <InfoBox 
+        onClick={e => setCasesType("recovered")}
+        title="Recoveries" cases={prettyPrintStat(countryInfo.todayRecovered)} total ={prettyPrintStat(countryInfo.recovered)} />
+        <InfoBox
+        onClick={e => setCasesType("deaths")}
+        title="Deaths" cases={prettyPrintStat(countryInfo.todayDeaths)} total={prettyPrintStat(countryInfo.deaths)} />
       </div>
 
       <Map 
+        casesType = {casesType}
         countries = {mapCountries}
         center = {mapCenter}
         zoom = {mapZoom}
