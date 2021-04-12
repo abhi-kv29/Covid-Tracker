@@ -1,4 +1,4 @@
-import { FormControl, Select, MenuItem, CardContent, Card } from '@material-ui/core';
+import { FormControl, Select, MenuItem, CardContent, Card, } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import InfoBox from './InfoBox.js';
@@ -7,6 +7,7 @@ import Table from './Table.js';
 import { sortData, prettyPrintStat } from './util.js';
 import LineGraph from './LineGraph';
 import "leaflet/dist/leaflet.css";
+import numeral from "numeral";
 
 function App() {
   
@@ -85,16 +86,25 @@ function App() {
       <div className="app-stats">
         <InfoBox
         active={casesType === "cases"}
-        onClick={e => setCasesType("cases")}
-        title="Coronavirus cases" cases={prettyPrintStat(countryInfo.todayCases)} total={prettyPrintStat(countryInfo.cases)} />
+        onClick={(e) => setCasesType("cases")}
+        title="Coronavirus cases" 
+        isRed
+        cases={prettyPrintStat(countryInfo.todayCases)} 
+        total={numeral(countryInfo.cases).format("0.0a")} />
         <InfoBox
         active={casesType === "recovered"} 
-        onClick={e => setCasesType("recovered")}
-        title="Recoveries" cases={prettyPrintStat(countryInfo.todayRecovered)} total ={prettyPrintStat(countryInfo.recovered)} />
+        onClick={(e) => setCasesType("recovered")}
+        title="Recovered" 
+        isRed
+        cases={prettyPrintStat(countryInfo.todayRecovered)}
+        total={numeral(countryInfo.recovered).format("0.0a")} />
         <InfoBox
         active={casesType === "deaths"}
-        onClick={e => setCasesType("deaths")}
-        title="Deaths" cases={prettyPrintStat(countryInfo.todayDeaths)} total={prettyPrintStat(countryInfo.deaths)} />
+        onClick={(e) => setCasesType("deaths")}
+        title="Deaths" 
+        isRed
+        cases={prettyPrintStat(countryInfo.todayDeaths)}
+        total={numeral(countryInfo.deaths).format("0.0a")} />
       </div>
 
       <Map 
@@ -106,10 +116,12 @@ function App() {
       </div>
       <Card className="app-right">
         <CardContent>
+          <div className="app-information">
           <h3>Live Cases by Country</h3>
           <Table countries={tableData} />
-          <h3>Worldwide new {casesType}</h3>
-          <LineGraph casesType={casesType} />
+          <h3 className="app-graphTitle" >Worldwide new {casesType}</h3>
+          <LineGraph className = "app-graph" casesType={casesType} />
+          </div>
         </CardContent>
       </Card>
     </div>
